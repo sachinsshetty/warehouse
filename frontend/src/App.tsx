@@ -54,7 +54,7 @@ function App() {
   // Usage
 //  getOrPullModel('mistral:latest');
 
-  getOrPullModel('llava:latest');
+  getOrPullModel('llava-phi3:latest');
 
   const handleImageUpload = (event) => {
     const file = event.target.files[0];
@@ -72,7 +72,7 @@ function App() {
     // const imageBuffer = fs.readFileSync(image);
     // const base64Image = imageBuffer.toString('base64');
     const requestBody = {
-      model: 'llava',
+      model: 'llava-phi3',
       messages: [
         {
           role: 'user',

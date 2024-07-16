@@ -4,7 +4,11 @@
 
 - [Frontend](frontend/README.md)
 
-
+- Docker Setup
+  - For CPU
+    - docker compose -f cpu-compose.yml up -d       
+  - For GPU
+    - docker compose -f gpu-compose.yml up -d      
 
 
 - Ideas 
