@@ -21,7 +21,8 @@ Front End
         - https://vitejs.dev/guide/
         - https://github.com/vitejs/vite/tree/main/packages/create-vite
 
-
+    - PWA
+      - https://vite-pwa-org.netlify.app/guide/
 --- 
 
 
