@@ -1,24 +1,25 @@
 import { useState, useEffect } from 'react'
 import axios from 'axios';
+import { AxiosError } from 'axios';
 import './App.css'
 
 const prompt = 'Can you tell me what this image depicts?';
 
 const ollamaBaseUrl = 'http://localhost:11434/api';
 
-const checkModelExists = async (modelName) => {
+const checkModelExists = async (modelName:string) => {
   try {
-    const response = await axios.post(`${ollamaBaseUrl}/show`, { name: modelName });
+    await axios.post(`${ollamaBaseUrl}/show`, { name: modelName });
     return true; // Model exists
   } catch (error) {
-    if (error.response && error.response.status === 404) {
+    if (error instanceof AxiosError && error.response && error.response.status === 404) {
       return false; // Model doesn't exist
     }
     throw error; // Rethrow other errors
   }
 };
 
-const pullModel = async (modelName) => {
+const pullModel = async (modelName:string) => {
   const requestBody = {
     name: modelName,
     stream: false
@@ -28,11 +29,11 @@ const pullModel = async (modelName) => {
     const response = await axios.post(`${ollamaBaseUrl}/pull`, requestBody);
     console.log('Model pulled successfully:', response.data);
   } catch (error) {
-    console.error('Error pulling model:', error.message);
+    console.error('Error pulling model:', (error as AxiosError).message);
   }
 };
 
-const getOrPullModel = async (modelName) => {
+const getOrPullModel = async (modelName:string) => {
   try {
     const modelExists = await checkModelExists(modelName);
     if (modelExists) {
@@ -42,42 +43,50 @@ const getOrPullModel = async (modelName) => {
       await pullModel(modelName);
     }
   } catch (error) {
-    console.error('Error:', error.message);
+    console.error('Error:', (error as AxiosError).message);
   }
 };
 
 
 function App() {
   const [data, setData] = useState(null);
-  const [image, setImage] = useState(null);
-
+  // const [image, setImage] = useState(null);
+  const [base64StringImage, setbase64StringImage] = useState<string | null>(null);
+  const [response, setResponse] = useState<any>(null);
   // Usage
 //  getOrPullModel('mistral:latest');
+// llava-phi3 does not run
+  getOrPullModel('moondream:latest');
 
-  getOrPullModel('llava-phi3:latest');
+  const handleImageUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const files = event.target.files;
+    if (files && files.length > 0) {
+      const file = files[0];
+      const reader = new FileReader();
 
-  const handleImageUpload = (event) => {
-    const file = event.target.files[0];
-    const reader = new FileReader();
-
-    reader.onloadend = () => {
-      setImage(reader.result);
-    };
-
-    reader.readAsDataURL(file);
+      reader.onloadend = () => {
+      if (typeof reader.result === 'string') {
+        setbase64StringImage(reader.result.split(',')[1]);
+      }
+      }
+      reader.readAsDataURL(file);
+      // do something with the file
+    } else {
+      // handle the case where no file was selected
+    }    
   };
 
   const sendImageToOllama = async () => {
-    if (!image) return;
+    if (!base64StringImage) return;
     // const imageBuffer = fs.readFileSync(image);
     // const base64Image = imageBuffer.toString('base64');
     const requestBody = {
-      model: 'llava-phi3',
+      model: 'moondream',
       messages: [
         {
           role: 'user',
           content: prompt,
-          images: [image]
+          images: [base64StringImage]
         }
       ],
       stream: false
@@ -88,15 +97,16 @@ function App() {
     try {
       const response = await axios.post(ollamaEndpoint, requestBody);
       console.log('Image processing result:', response.data.message.content);
+      setResponse(response.data);
       return response.data.message.content;
     } catch (error) {
-      console.error('Error processing image:', error.message);
+      console.error('Error processing image:', (error as AxiosError).message);
       throw error;
     }
 
   };
 
-
+/*
   useEffect(() => {
     axios.get('http://localhost:11434/api/tags')
       .then(response => {
@@ -107,14 +117,21 @@ function App() {
       });
   }, []);
 
-
+*/
   return (
     <>
-          <input type="file" onChange={handleImageUpload} />
-          <button onClick={sendImageToOllama}>Send Image to Ollama</button>        
       <p className="read-the-docs">
         Warehouse UI
       </p>
+          <input type="file" onChange={handleImageUpload} />
+          <button onClick={sendImageToOllama}>Upload</button>        
+
+      {response && (
+        <div>
+          <h2>Response from Ollama:</h2>
+          <pre>{JSON.stringify(response, null, 2)}</pre>
+        </div>
+      )}
       {data && <pre>{JSON.stringify(data, null, 2)}</pre>}
     </>
   )
