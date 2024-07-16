@@ -1,5 +1,15 @@
 ## Autonomous Warehouse
 
+- [Version 1](version-1.md)
+
+- [Frontend](frontend/README.md)
+
+- Docker Setup
+  - For CPU
+    - docker compose -f cpu-compose.yml up -d       
+  - For GPU
+    - docker compose -f gpu-compose.yml up -d      
+
 
 - Ideas 
 
