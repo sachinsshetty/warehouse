@@ -1,4 +1,5 @@
-import { useState, useEffect } from 'react'
+// import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import axios from 'axios';
 import { AxiosError } from 'axios';
 import './App.css'
@@ -49,8 +50,7 @@ const getOrPullModel = async (modelName:string) => {
 
 
 function App() {
-  const [data, setData] = useState(null);
-  // const [image, setImage] = useState(null);
+  // const [data, setData] = useState(null);
   const [base64StringImage, setbase64StringImage] = useState<string | null>(null);
   const [response, setResponse] = useState<any>(null);
   // Usage
@@ -132,7 +132,8 @@ function App() {
           <pre>{JSON.stringify(response, null, 2)}</pre>
         </div>
       )}
-      {data && <pre>{JSON.stringify(data, null, 2)}</pre>}
+      
+      {/*data && <pre>{JSON.stringify(data, null, 2)}</pre>*/ }
     </>
   )
 }
