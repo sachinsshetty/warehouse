@@ -1,4 +1,3 @@
-import { useState, useRef  } from 'react'
 import React, { Component, createRef } from 'react';
 import axios from 'axios';
 import { AxiosError } from 'axios';
@@ -13,6 +12,7 @@ class App extends Component {
       base64StringImage: null,
       response: null,
       prompt: '',
+      uploadedImage: null,
     };
     this.promptRef = createRef();
   }
@@ -68,7 +68,10 @@ class App extends Component {
 
       reader.onloadend = () => {
         if (typeof reader.result === 'string') {
-          this.setState({ base64StringImage: reader.result.split(',')[1] });
+          this.setState({ 
+            base64StringImage: reader.result.split(',')[1],
+            uploadedImage: reader.result, 
+          });
         }
       }
       reader.readAsDataURL(file);
@@ -116,10 +119,13 @@ class App extends Component {
           <input type="file" onChange={this.handleImageUpload} />
           <button onClick={this.sendImageToOllama}>Upload</button>        
 
-      {this.response && (
+      {this.state.response && (
         <div>
           <h4>Response:</h4>
-          <pre>{JSON.stringify(this.response, null, 2)}</pre>
+          <pre>{JSON.stringify(this.state.response, null, 2)}</pre>
+          {this.state.uploadedImage && (
+              <img src={this.state.uploadedImage} alt="Uploaded" width="100" height="100" />
+            )}
         </div>
       )}
       
