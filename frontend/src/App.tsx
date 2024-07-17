@@ -1,10 +1,7 @@
-// import { useState, useEffect } from 'react'
-import { useState } from 'react'
+import { useState, useRef  } from 'react'
 import axios from 'axios';
 import { AxiosError } from 'axios';
 import './App.css'
-
-const prompt = 'Can you tell me what this image depicts?';
 
 const ollamaBaseUrl = 'http://localhost:11434/api';
 
@@ -50,11 +47,11 @@ const getOrPullModel = async (modelName:string) => {
 
 
 function App() {
-  // const [data, setData] = useState(null);
   const [base64StringImage, setbase64StringImage] = useState<string | null>(null);
   const [response, setResponse] = useState<any>(null);
-  // Usage
-//  getOrPullModel('mistral:latest');
+  const [prompt, setPrompt] = useState('');
+  const promptRef = useRef<HTMLInputElement>(null);
+
 // llava-phi3 does not run
   getOrPullModel('moondream:latest');
 
@@ -70,7 +67,6 @@ function App() {
       }
       }
       reader.readAsDataURL(file);
-      // do something with the file
     } else {
       // handle the case where no file was selected
     }    
@@ -78,8 +74,8 @@ function App() {
 
   const sendImageToOllama = async () => {
     if (!base64StringImage) return;
-    // const imageBuffer = fs.readFileSync(image);
-    // const base64Image = imageBuffer.toString('base64');
+    setPrompt(promptRef.current?.value || '');
+
     const requestBody = {
       model: 'moondream',
       messages: [
@@ -97,7 +93,7 @@ function App() {
     try {
       const response = await axios.post(ollamaEndpoint, requestBody);
       console.log('Image processing result:', response.data.message.content);
-      setResponse(response.data);
+      setResponse(response.data.message.content);
       return response.data.message.content;
     } catch (error) {
       console.error('Error processing image:', (error as AxiosError).message);
@@ -106,23 +102,12 @@ function App() {
 
   };
 
-/*
-  useEffect(() => {
-    axios.get('http://localhost:11434/api/tags')
-      .then(response => {
-        setData(response.data);
-      })
-      .catch(error => {
-        console.error(error);
-      });
-  }, []);
-
-*/
   return (
     <>
       <p className="read-the-docs">
         Warehouse UI
       </p>
+          <input type="text" ref={promptRef} placeholder="Enter your prompt here..." />
           <input type="file" onChange={handleImageUpload} />
           <button onClick={sendImageToOllama}>Upload</button>        
 
@@ -133,7 +118,6 @@ function App() {
         </div>
       )}
       
-      {/*data && <pre>{JSON.stringify(data, null, 2)}</pre>*/ }
     </>
   )
 }
