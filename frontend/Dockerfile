@@ -1,5 +1,5 @@
 # Use an official Node.js runtime as a parent image
-FROM node:20
+FROM node:alpine
 
 # Set the working directory in the container to /app
 WORKDIR /app
@@ -20,7 +20,7 @@ COPY . .
 RUN npm run build
 
 # Expose the port that the Vite application will run on
-EXPOSE 3000
+EXPOSE 8000
 
 # Start the Vite application
-CMD ["npm", "run", "preview"]
+CMD ["npm", "run", "dev"]

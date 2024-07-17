@@ -4,6 +4,14 @@ import { VitePWA } from 'vite-plugin-pwa'
 
 // https://vitejs.dev/config/
 export default defineConfig({
+  server: {
+    host: true,
+    port: 8000, 
+    // add the next lines if you're using windows and hot reload doesn't work
+     watch: {
+       usePolling: true
+     }
+  },
   plugins: [
     react(),
     VitePWA({ registerType: 'autoUpdate',
