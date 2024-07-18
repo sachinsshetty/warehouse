@@ -45,3 +45,24 @@ Run time
 - v3 
  - Voice Query for real time
  - Connect with handsfree headset to get Info - For floor Workers
+
+
+Business case - 
+Automated Orders 
+
+Handsfree - query system with whisper and Function api
+
+Using whisper- 
+Worker can request next task.  Can be integrated with their headset . 
+Usable in major languages
+
+Inside Supermarket 
+
+Instructions wil be given based on System state. 
+If any item is over on shelf, provide notification to floor worker to replinesh stock
+
+
+1. We can use function calling
+To map their api, 
+
+2. From images - we can find what items are b over .
