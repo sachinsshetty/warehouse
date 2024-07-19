@@ -1,4 +1,4 @@
-import { Component, createRef, ChangeEvent } from 'react';
+import { Component, ChangeEvent } from 'react';
 import axios from 'axios';
 import { AxiosError } from 'axios';
 import './App.css'
@@ -14,7 +14,6 @@ interface AppState {
 }
 
 class App extends Component<{}, AppState> {
-  promptRef: React.RefObject<HTMLInputElement>;
   constructor(props:{}) {
     super(props);
     this.state = {
@@ -24,7 +23,6 @@ class App extends Component<{}, AppState> {
       uploadedImage: null,
       isLoading: false,
     };
-    this.promptRef = createRef();
   }
 
   componentDidMount() {
@@ -90,10 +88,13 @@ class App extends Component<{}, AppState> {
     }
   };
 
+  handlePromptChange = (event: ChangeEvent<HTMLInputElement>) => {
+    this.setState({ prompt: event.target.value });
+  };
+
   sendImageToOllama = async () => {
     if (!this.state.base64StringImage) return;
-    this.setState({ prompt: this.promptRef.current?.value || '' });
-
+    
     const requestBody = {
       model: 'moondream',
       messages: [
@@ -125,7 +126,8 @@ class App extends Component<{}, AppState> {
       <p className="read-the-docs">
         Warehouse UI
       </p>
-          <input type="text" ref={this.promptRef} placeholder="Enter your prompt here..." />
+          <input type="text"   value={this.state.prompt}
+  onChange={this.handlePromptChange} placeholder="Enter your prompt here..." />
           <input type="file" onChange={this.handleImageUpload} />
           <button onClick={this.sendImageToOllama} disabled={this.state.isLoading}>
             {this.state.isLoading ? 'Processing...' : 'Upload'}</button>        
