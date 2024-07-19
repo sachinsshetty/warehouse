@@ -3,7 +3,7 @@ services:
     volumes:
       - ./ollama/ollama:/root/.ollama
     container_name: ollama-warehouse-gpu
-    pull_policy: always
+    #pull_policy: always
     tty: true
     restart: unless-stopped
     image: ollama/ollama:latest

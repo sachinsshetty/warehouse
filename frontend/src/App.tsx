@@ -10,6 +10,7 @@ interface AppState {
   response: any;
   prompt: string;
   uploadedImage: string | null;
+  isLoading: boolean;
 }
 
 class App extends Component<{}, AppState> {
@@ -21,6 +22,7 @@ class App extends Component<{}, AppState> {
       response: null,
       prompt: '',
       uploadedImage: null,
+      isLoading: false,
     };
     this.promptRef = createRef();
   }
@@ -125,7 +127,8 @@ class App extends Component<{}, AppState> {
       </p>
           <input type="text" ref={this.promptRef} placeholder="Enter your prompt here..." />
           <input type="file" onChange={this.handleImageUpload} />
-          <button onClick={this.sendImageToOllama}>Upload</button>        
+          <button onClick={this.sendImageToOllama} disabled={this.state.isLoading}>
+            {this.state.isLoading ? 'Processing...' : 'Upload'}</button>        
 
       {this.state.response && (
         <div>
