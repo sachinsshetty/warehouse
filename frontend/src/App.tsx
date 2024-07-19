@@ -1,12 +1,20 @@
-import React, { Component, createRef } from 'react';
+import { Component, createRef, ChangeEvent } from 'react';
 import axios from 'axios';
 import { AxiosError } from 'axios';
 import './App.css'
 
 const ollamaBaseUrl = 'http://localhost:11434/api';
 
-class App extends Component {
-  constructor(props) {
+interface AppState {
+  base64StringImage: string | null;
+  response: any;
+  prompt: string;
+  uploadedImage: string | null;
+}
+
+class App extends Component<{}, AppState> {
+  promptRef: React.RefObject<HTMLInputElement>;
+  constructor(props:{}) {
     super(props);
     this.state = {
       base64StringImage: null,
@@ -21,7 +29,7 @@ class App extends Component {
     this.getOrPullModel('moondream:latest');
   }
 
-  checkModelExists = async (modelName) => {
+  checkModelExists = async (modelName:string) => {
     try {
       await axios.post(`${ollamaBaseUrl}/show`, { name: modelName });
       return true; // Model exists
@@ -33,7 +41,7 @@ class App extends Component {
     }
   };
 
-  pullModel = async (modelName) => {
+  pullModel = async (modelName:string) => {
     const requestBody = {
       name: modelName,
       stream: false
@@ -46,7 +54,7 @@ class App extends Component {
       console.error('Error pulling model:', (error as AxiosError).message);
     }
   };
-  getOrPullModel = async (modelName) => {
+  getOrPullModel = async (modelName:string) => {
     try {
       const modelExists = await this.checkModelExists(modelName);
       if (modelExists) {
@@ -60,7 +68,7 @@ class App extends Component {
     }
   };
 
-  handleImageUpload = (event) => {
+  handleImageUpload = (event: ChangeEvent<HTMLInputElement>) => {
     const files = event.target.files;
     if (files && files.length > 0) {
       const file = files[0];
