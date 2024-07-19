@@ -1,8 +1,12 @@
 ## Autonomous Warehouse
 
+- Voice Dispatcher - for [AI - Agents 2.0 Hackathon](https://lu.ma/ai-agents-2.0)
+
 - [Version 1](version-1.md)
 
 - [Frontend](frontend/README.md)
+
+- [devpost tracker](https://devpost.com/software/drishti-09zpyk)
 
 - Docker Setup
   - For CPU
