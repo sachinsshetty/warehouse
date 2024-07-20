@@ -17,8 +17,8 @@ services:
               count: 1
               capabilities: [gpu]
   frontend:
-    image: slabstech/warehouse-ui
-    container_name: frontend-gpu
+    image: slabstech/warehouse-opt
+    container_name: frontend-gpu-opt
     ports:
       - 8000:8000  # Map the container port to the host
     depends_on:

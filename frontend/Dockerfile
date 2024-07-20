@@ -1,27 +1,29 @@
-# Use an official Node.js runtime as a parent image
-FROM node:alpine
+# Stage 1: Build
+FROM node:alpine as builder
 
-# Set the working directory in the container to /app
 WORKDIR /app
 
-# Copy the package.json and yarn.lock files to the container at /app
 COPY package*.json ./
 
 RUN npm install -g typescript vite
-# Install the project dependencies
 RUN npm install
 
-# If you're using yarn, you can use the following command instead:
-# RUN yarn install
-
-# Copy the rest of the project files to the container at /app
 COPY . .
 
-# Build the Vite application
 RUN npm run build
 
-# Expose the port that the Vite application will run on
+# Stage 2: Production
+FROM node:alpine as production
+
+WORKDIR /app
+
+# Copy the built files from the builder stage
+COPY --from=builder /app/dist ./dist
+
+# Install production dependencies
+COPY package*.json ./
+RUN npm install --only=production
+
 EXPOSE 8000
 
-# Start the Vite application
-CMD ["npm", "run", "dev"]
+CMD ["npm", "start"]
