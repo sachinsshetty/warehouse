@@ -2,6 +2,8 @@
 
 - Voice Dispatcher - for [AI - Agents 2.0 Hackathon](https://lu.ma/ai-agents-2.0)
 
+!["Voice Dispatcher"](docs/images/dispatcher.drawio.png "Voice Dispatcher") 
+
 - [Version 1](version-1.md)
 
 - [Frontend](frontend/README.md)
