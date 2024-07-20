@@ -24,13 +24,13 @@ class App extends Component<{}, AppState> {
       prompt: '',
       uploadedImage: null,
       isLoading: false,
-      models: ['model1', 'model2', 'model3'], // Replace with your actual models
-      selectedModel: 'model1', // Set the default model
+      models: ['moondream', 'llava'], 
+      selectedModel: 'moondream', 
     };
   }
 
   componentDidMount() {
-    this.getOrPullModel('moondream:latest');
+    this.getOrPullModel(this.state.selectedModel);
   }
 
   checkModelExists = async (modelName:string) => {
@@ -97,7 +97,9 @@ class App extends Component<{}, AppState> {
   };
 
   handleModelChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    this.setState({ selectedModel: event.target.value });
+    this.setState({ selectedModel: event.target.value }, () => {
+      this.getOrPullModel(this.state.selectedModel);
+    });
   };
 
   sendImageToOllama = async () => {
