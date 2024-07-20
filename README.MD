@@ -38,4 +38,7 @@ References
 - https://hack-now-2024.devpost.com/
 - https://de.nttdata-solutions.com/hack-now-2024
 
-test
+- Harware
+  - https://github.com/BasedHardware
+  - https://github.com/MULTI-ON
+  - 

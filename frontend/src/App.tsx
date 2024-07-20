@@ -3,8 +3,6 @@ import axios from 'axios';
 import { AxiosError } from 'axios';
 import './App.css'
 
-const ollamaBaseUrl = 'http://localhost:11434/api';
-
 interface AppState {
   base64StringImage: string | null;
   response: any;
@@ -14,6 +12,7 @@ interface AppState {
 }
 
 class App extends Component<{}, AppState> {
+  ollamaBaseUrl = import.meta.env.VITE_OLLAMA_BASE_URL;
   constructor(props:{}) {
     super(props);
     this.state = {
@@ -31,7 +30,7 @@ class App extends Component<{}, AppState> {
 
   checkModelExists = async (modelName:string) => {
     try {
-      await axios.post(`${ollamaBaseUrl}/show`, { name: modelName });
+      await axios.post(`${this.ollamaBaseUrl}/show`, { name: modelName });
       return true; // Model exists
     } catch (error) {
       if (error instanceof AxiosError && error.response && error.response.status === 404) {
@@ -48,7 +47,7 @@ class App extends Component<{}, AppState> {
     };
 
     try {
-      const response = await axios.post(`${ollamaBaseUrl}/pull`, requestBody);
+      const response = await axios.post(`${this.ollamaBaseUrl}/pull`, requestBody);
       console.log('Model pulled successfully:', response.data);
     } catch (error) {
       console.error('Error pulling model:', (error as AxiosError).message);
@@ -107,10 +106,11 @@ class App extends Component<{}, AppState> {
       stream: false
     };
 
-    const ollamaEndpoint = 'http://localhost:11434/api/chat';
+    const ollamaEndpoint = this.ollamaBaseUrl + '/chat';
 
     try {
       const response = await axios.post(ollamaEndpoint, requestBody);
+      console.log("Prompt - ", this.state.prompt);
       console.log('Image processing result:', response.data.message.content);
       this.setState({ response: response.data.message.content });
       return response.data.message.content;
