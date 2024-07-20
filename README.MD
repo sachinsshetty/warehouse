@@ -16,6 +16,9 @@
   - For GPU
     - docker compose -f gpu-compose.yml up -d      
 
+ - Build Frontend Docker
+  - cd frontend
+  - docker build --rm . -t slabstech/warehouse-ui -f Dockerfile 
 
 - Ideas 
 

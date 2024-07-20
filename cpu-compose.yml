@@ -10,9 +10,7 @@ services:
     ports:
       - 11434:11434
   frontend:
-    build:
-      context: ./frontend  # Path to your frontend directory
-      dockerfile: Dockerfile  # Path to your Dockerfile
+    image: slabstech/warehouse-ui
     container_name: frontend-cpu
     ports:
       - 8000:8000  # Map the container port to the host
