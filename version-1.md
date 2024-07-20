@@ -66,3 +66,13 @@ If any item is over on shelf, provide notification to floor worker to replinesh 
 To map their api, 
 
 2. From images - we can find what items are b over .
+
+
+-- 
+
+Elevator Pitch
+
+Real-time identification of Vegetable/Fruits status to eliminate waste due to contamination.  
+
+Intelligent Hands-free system connected to existing Headset, Instructions will be given based on System state. If any item is over on shelf, provide notification to floor worker to replenish stock.
+Warehouse Mapping with multimodal LLM using CCTV cameras.

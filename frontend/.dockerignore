@@ -5,7 +5,7 @@ node_modules
 dist
 
 # Environment files
-.env
+!.env
 .env.*
 
 # Version control

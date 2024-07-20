@@ -1,0 +1,50 @@
+.idea/
+.vscode/
+.git/
+.venv/
+__pycache__/
+.gitignore
+Dockerfile
+
+# Ignore the git directory
+.git
+.gitignore
+
+# Ignore Python bytecode files
+__pycache__/
+*.py[cod]
+
+# Ignore virtual environment directories
+venv/
+env/
+.venv/
+.env/
+
+# Ignore macOS specific files
+.DS_Store
+
+# Ignore Docker-related files
+Dockerfile
+docker-compose.yml
+
+# Ignore logs and coverage reports
+*.log
+*.coverage
+.coverage
+.coverage.*
+nosetests.xml
+coverage.xml
+*.cover
+
+# Ignore Jupyter Notebook checkpoints
+.ipynb_checkpoints
+
+# Ignore Flask specific cache
+.webassets-cache
+
+# Ignore environment variable files
+*.env
+
+# Ignore IDE and editor specific files
+.vscode/
+.idea/
