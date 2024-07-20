@@ -2,6 +2,7 @@ import { Component, ChangeEvent } from 'react';
 import axios from 'axios';
 import { AxiosError } from 'axios';
 import './App.css'
+import TextField from '@mui/material/TextField';
 
 interface AppState {
   base64StringImage: string | null;
@@ -9,6 +10,8 @@ interface AppState {
   prompt: string;
   uploadedImage: string | null;
   isLoading: boolean;
+  models: string[]; 
+  selectedModel: string; 
 }
 
 class App extends Component<{}, AppState> {
@@ -21,6 +24,8 @@ class App extends Component<{}, AppState> {
       prompt: '',
       uploadedImage: null,
       isLoading: false,
+      models: ['model1', 'model2', 'model3'], // Replace with your actual models
+      selectedModel: 'model1', // Set the default model
     };
   }
 
@@ -91,6 +96,10 @@ class App extends Component<{}, AppState> {
     this.setState({ prompt: event.target.value });
   };
 
+  handleModelChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    this.setState({ selectedModel: event.target.value });
+  };
+
   sendImageToOllama = async () => {
     if (!this.state.base64StringImage) return;
     
@@ -123,25 +132,49 @@ class App extends Component<{}, AppState> {
   render(){
   return (
     <>
+    <div className="app-container">
       <p className="read-the-docs">
         Warehouse UI
       </p>
-          <input type="text"   value={this.state.prompt}
-  onChange={this.handlePromptChange} placeholder="Enter your prompt here..." />
-          <input type="file" onChange={this.handleImageUpload} />
-          <button onClick={this.sendImageToOllama} disabled={this.state.isLoading}>
-            {this.state.isLoading ? 'Processing...' : 'Upload'}</button>        
-
+      <div className="input-container">
+          <TextField
+            value={this.state.prompt}
+            onChange={this.handlePromptChange}
+            placeholder="Enter your prompt here..."
+            fullWidth
+          />
+            <input 
+              type="file" 
+              onChange={this.handleImageUpload} 
+          />
+          <button 
+            onClick={this.sendImageToOllama} 
+            disabled={this.state.isLoading}>
+            {this.state.isLoading ? 'Processing...' : 'Upload'}
+          </button>
+          <select 
+            value={this.state.selectedModel} 
+            onChange={this.handleModelChange}>
+            {this.state.models.map((model) => (
+              <option key={model} value={model}>
+                {model}
+              </option>
+            ))}
+          </select>        
+      </div>    
       {this.state.response && (
-        <div>
+        <div className="response-container">
           <h4>Response:</h4>
           <pre>{JSON.stringify(this.state.response, null, 2)}</pre>
           {this.state.uploadedImage && (
-              <img src={this.state.uploadedImage} alt="Uploaded" width="100" height="100" />
+              <img 
+              src={this.state.uploadedImage} 
+              alt="Uploaded" 
+              width="100" height="100" />
             )}
         </div>
       )}
-      
+      </div>  
     </>
   )
 }
