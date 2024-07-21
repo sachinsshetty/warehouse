@@ -6,6 +6,10 @@ output.wav
 src/ollama
 pyautogenvenv/
 venv/
+
+backend/fruits-fresh-and-rotten-for-classification.zip
+backend/fresh-and-stale-classification.zip
+backend/dataset/
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
