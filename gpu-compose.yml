@@ -17,10 +17,10 @@ services:
               count: 1
               capabilities: [gpu]
   frontend:
-    image: slabstech/warehouse-opt
-    container_name: frontend-gpu-opt
+    image: slabstech/warehouse-ui
+    container_name: frontend-gpu
     ports:
-      - 8000:8000  # Map the container port to the host
+      - 8000:80  # Map the container port to the host
     depends_on:
       - ollama  # Ensure that the ollama service is started before the frontend service
     extra_hosts:

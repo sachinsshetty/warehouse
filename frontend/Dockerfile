@@ -12,18 +12,10 @@ COPY . .
 
 RUN npm run build
 
-# Stage 2: Production
-FROM node:alpine as production
+## Stage 2 : deploy
 
-WORKDIR /app
+FROM nginx:latest as prod
 
-# Copy the built files from the builder stage
-COPY --from=builder /app/dist ./dist
+COPY --from=builder /app/dist /usr/share/nginx/html
 
-# Install production dependencies
-COPY package*.json ./
-RUN npm install --only=production
-
-EXPOSE 8000
-
-CMD ["npm", "start"]
+CMD ["nginx", "-g", "daemon off;"]
