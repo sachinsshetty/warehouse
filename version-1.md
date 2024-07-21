@@ -76,3 +76,10 @@ Real-time identification of Vegetable/Fruits status to eliminate waste due to co
 
 Intelligent Hands-free system connected to existing Headset, Instructions will be given based on System state. If any item is over on shelf, provide notification to floor worker to replenish stock.
 Warehouse Mapping with multimodal LLM using CCTV cameras.
+
+---
+
+Create time series for CCTC tracking
+
+check llava rotten status with json response, 
+Find the quantity of images, with small images
