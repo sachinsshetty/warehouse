@@ -83,16 +83,3 @@ Create time series for CCTC tracking
 
 check llava rotten status with json response, 
 Find the quantity of images, with small images
-
-
-Type : fruit/vegetable, color, isRotten, quantity, 
-
-
-Role - Act as food inspector 
-
--- 
-DataSet
-
-https://www.kaggle.com/datasets/sriramr/fruits-fresh-and-rotten-for-classification
-
-https://www.kaggle.com/datasets/swoyam2609/fresh-and-stale-classification
