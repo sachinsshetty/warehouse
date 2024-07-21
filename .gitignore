@@ -10,6 +10,7 @@ venv/
 backend/fruits-fresh-and-rotten-for-classification.zip
 backend/fresh-and-stale-classification.zip
 backend/dataset/
+dataset
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]

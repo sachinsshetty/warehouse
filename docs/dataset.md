@@ -19,12 +19,14 @@ Dataset
 - Download the dataset from kaggle
     - kaggle datasets download -d sriramr/fruits-fresh-and-rotten-for-classification
     - kaggle datasets download -d swoyam2609/fresh-and-stale-classification
+    - kaggle datasets download -d swoyam2609/scrapped-image-dataset-of-fresh-and-rotten-fruits
 
 
 - Create eval
-    - mkdir -p dataset dataset/dataset_1 dataset/dataset_2
+    - mkdir -p dataset dataset/dataset_1 dataset/dataset_2 dataset/dataset_3
         - unzip fresh-and-stale-classification.zip -d dataset/dataset_1
         - unzip fruits-fresh-and-rotten-for-classification.zip -d dataset/dataset_2
+        - unzip scrapped-image-dataset-of-fresh-and-rotten-fruits.zip -d dataset/dataset_3
 
 - References
     - kaggle
