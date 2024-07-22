@@ -32,3 +32,5 @@ VLLM setup
 - Llava
   - https://huggingface.co/llava-hf
   - llava-hf/llava-v1.6-mistral-7b-hf
+  - https://huggingface.co/TheBloke/llava-v1.5-13B-AWQ/tree/main
+  - fine-tuning - https://github.com/huggingface/trl/blob/main/examples/scripts/vsft_llava.py
