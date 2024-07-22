@@ -19,3 +19,16 @@ VLLM setup
 	  "temperature": 0
 	}'
 	`
+
+
+- moondream not supported
+
+
+- Quantized Weights
+  - https://huggingface.co/neuralmagic
+  - https://huggingface.co/neuralmagic/Mistral-7B-Instruct-v0.3-GPTQ-4bit
+  - https://huggingface.co/neuralmagic/Mistral-7B-Instruct-v0.3-quantized.w8a16
+
+- Llava
+  - https://huggingface.co/llava-hf
+  - llava-hf/llava-v1.6-mistral-7b-hf

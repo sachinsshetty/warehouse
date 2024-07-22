@@ -1,18 +1,21 @@
 services:
   vllm:
-    image: ghcr.io/mistralai/mistral-src/vllm:latest
+    image: vllm/vllm-openai:latest
     runtime: nvidia
+    shm_size: 1g
     ports:
       - "8000:8000"
     volumes:
       - ~/.cache/huggingface:/root/.cache/huggingface
     environment:
-      - HF_TOKEN=${HF_TOKEN}
-    command: 
+      - HUGGING_FACE_HUB_TOKEN=${HF_TOKEN}
+    command:
       - --host
       - 0.0.0.0
       - --model
-      - mistralai/Mistral-7B-Instruct-v0.2
+      # - mistralai/Mistral-7B-v0.3  # fulll precision
+      # - neuralmagic/Mistral-7B-Instruct-v0.3-quantized.w8a16  # quantized 1
+      - neuralmagic/Mistral-7B-Instruct-v0.3-GPTQ-4bit
       - --gpu-memory-utilization
       - "0.95"
       - --max-model-len
@@ -22,6 +25,6 @@ services:
         reservations:
           devices:
             - driver: nvidia
-              device_ids: ["0"] #count: all
+              # count: all
+              device_ids: ["0"]
               capabilities: [gpu]
-    ipc: host

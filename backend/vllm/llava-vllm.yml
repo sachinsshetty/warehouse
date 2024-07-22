@@ -13,11 +13,11 @@ services:
       - --host
       - 0.0.0.0
       - --model
-      - mistralai/Mistral-7B-v0.3
+      # - mistralai/Mistral-7B-v0.3  # fulll precision
+      # - neuralmagic/Mistral-7B-Instruct-v0.3-quantized.w8a16  # quantized 1
+      - llava-hf/llava-v1.6-mistral-7b-hf
       - --gpu-memory-utilization
       - "0.95"
-      - --max-model-len
-      - "8192"
     deploy:
       resources:
         reservations:
