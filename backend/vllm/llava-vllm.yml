@@ -1,0 +1,28 @@
+services:
+  vllm:
+    image: vllm/vllm-openai:latest
+    runtime: nvidia
+    shm_size: 1g
+    ports:
+      - "8000:8000"
+    volumes:
+      - ~/.cache/huggingface:/root/.cache/huggingface
+    environment:
+      - HUGGING_FACE_HUB_TOKEN=${HF_TOKEN}
+    command:
+      - --host
+      - 0.0.0.0
+      - --model
+      # - mistralai/Mistral-7B-v0.3  # fulll precision
+      # - neuralmagic/Mistral-7B-Instruct-v0.3-quantized.w8a16  # quantized 1
+      - TheBloke/llava-v1.5-13B-AWQ
+      - --gpu-memory-utilization
+      - "0.95"
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              # count: all
+              device_ids: ["0"]
+              capabilities: [gpu]
