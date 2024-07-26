@@ -14,4 +14,16 @@ Phase 2
 Involves processing CCTV videos over large period of tume. To build a time-series map related to efficiency of supermarker/warehouse.
 
 - Algorithm
-  - Dynamic video stream sampler
+  - Dynamic video stream sampler - Reduce computation cost
+    - We start the pipleine by using Frame every 30 secs from CCTV stream
+    - Each frame is then filtered by CV feature algorithm for difference in Pixel invariant to light
+    - For each accepted Frame, we update Real-time mmap using VLM equipped algorithm.
+    - Based on the footfall/traffic we can increase/decrease the schedule of Image capture(30 secs).
+    - During peak hours, calcuated from front-door CCTV we reduce the duration and in off-peak hours we increase the duration.
+    - The system pauses itself during closed time to eliminate unnecessart computation. This reduced power consumpation compared to 24x7 system/
+
+  - Anonymizer  - Privacy by design 
+    - Copy the CCTV video into system.
+    - blur faces and rewrite image for input pipeline
+    - Delete the copied video.
+    - Privacy by design, easy to use with available CV library, without decreasing efficiency of proposed system.
