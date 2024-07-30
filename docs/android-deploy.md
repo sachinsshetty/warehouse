@@ -36,3 +36,18 @@ reference
 
 - https://llm.mlc.ai/
 
+- https://bazel.build/install/ubuntu
+
+Install bazel
+
+Download bazel
+
+wget https://github.com/bazelbuild/bazel/releases/download/7.3.0rc1/bazel-7.3.0rc1-installer-linux-x86_64.sh
+
+chmod +x bazel-7.3.0rc1-installer-linux-x86_64.sh
+./bazel-7.3.0rc1-installer-linux-x86_64.sh --user
+
+add .bashrc
+export PATH="$PATH:$HOME/bin"
+
+

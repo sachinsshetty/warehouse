@@ -47,3 +47,5 @@ References
   - https://github.com/BasedHardware
   - https://github.com/MULTI-ON
   - https://www.wur.nl/en/research-results/research-institutes/plant-research/greenhouse-horticulture/show-greenhouse/autonomous-greenhouse-challenge-4th-edition.htm
+-
+https://hackathon.sick.com/
