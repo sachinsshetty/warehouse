@@ -1,5 +1,14 @@
 Deploy on Android
 
+Run GPT-2 model on device 
+- https://codelabs.developers.google.com/kerasnlp-tflite#0
+
+
+- Can it be upgraded for larger models ?
+
+- API based - 
+
+
 - Nexa - https://github.com/NexaAI/Ocotpus-v2-demo
 
 
@@ -64,6 +73,7 @@ tenorflow lite
 - https://ai.google.dev/gemma/docs/lora_tuning
 
 - https://codelabs.developers.google.com/kerasnlp-tflite#0
+- https://github.com/tensorflow/codelabs
 
 Steps
   - Install - Android Studio - https://developer.android.com/studio/
