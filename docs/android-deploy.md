@@ -1,5 +1,8 @@
 Deploy on Android
 
+- Nexa - https://github.com/NexaAI/Ocotpus-v2-demo
+
+
 
 - git clone https://github.com/googlesamples/mediapipe
 - cd mediapipe
@@ -51,3 +54,19 @@ add .bashrc
 export PATH="$PATH:$HOME/bin"
 
 
+-- 
+
+tenorflow lite
+
+- https://www.youtube.com/watch?v=pNWNMPi0Mvk
+- https://keras.io/keras_nlp/
+- https://www.tensorflow.org/lite
+- https://ai.google.dev/gemma/docs/lora_tuning
+
+- https://codelabs.developers.google.com/kerasnlp-tflite#0
+
+Steps
+  - Install - Android Studio - https://developer.android.com/studio/
+- Dowload - https://github.com/tensorflow/examples
+
+- build the tflite model - https://colab.research.google.com/github/tensorflow/codelabs/blob/main/KerasNLP/io2023_workshop.ipynb
