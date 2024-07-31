@@ -1,14 +1,14 @@
 services:
   ollama:
     volumes:
-      - ./ollama/ollama:/root/.ollama
+      - ~/ollama/ollama:/root/.ollama
     container_name: ollama-warehouse-gpu
     #pull_policy: always
     tty: true
     restart: unless-stopped
     image: ollama/ollama:latest
     ports:
-      - 11434:11434
+      - 11435:11434
     deploy:
       resources:
         reservations:
@@ -16,6 +16,8 @@ services:
             - driver: nvidia
               count: 1
               capabilities: [gpu]
+    networks:
+      - app-network
   frontend:
     image: slabstech/warehouse-ui
     container_name: frontend-gpu
@@ -25,3 +27,10 @@ services:
       - ollama  # Ensure that the ollama service is started before the frontend service
     extra_hosts:
       - host.docker.internal:host-gateway
+    environment:
+      - 'VITE_OLLAMA_BASE_URL=http://localhost:11435/api'
+    networks:
+      - app-network
+networks:
+  app-network:
+    driver: bridge

@@ -1,0 +1,6 @@
+services:
+  frontend:
+    image: slabstech/warehouse-ui
+    container_name: frontend-cpu
+    ports:
+      - 8000:80  # Map the container port to the host
