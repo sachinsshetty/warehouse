@@ -1,0 +1,33 @@
+services:
+  ollama:
+    image: ollama/ollama:latest
+    container_name: foodguardianai-ollama
+    #pull_policy: always
+    tty: true
+    ports:
+      - "11434:11434"
+    volumes:
+      - ~/ollama:/root/.ollama
+      - ./entrypoint.sh:/entrypoint.sh
+    restart: unless-stopped
+    entrypoint: ["/usr/bin/bash", "/entrypoint.sh"]
+    environment:
+      OLLAMA_NUM_PARALLEL: "2"
+      OLLAMA_MAX_LOADED_MODELS: "2"
+      OLLAMA_KEEP_ALIVE: "-1"
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu]
+  frontend:
+    image: slabstech/foodguardian-ui:220724
+    container_name: foodguardianai-frontend
+    ports:
+      - 4173:80  # Map the container port to the host
+    depends_on:
+      - ollama  # Ensure that the ollama service is started before the frontend service
+    extra_hosts:
+      - host.docker.internal:host-gateway
