@@ -11,6 +11,10 @@ Phase 2 Involves processing CCTV videos over large period of tume. To build a ti
 
 [Phase 1 - Demo Presentaion](docs/demo_presentation.md)
 
+
+[![Food Guardian](https://img.youtube.com/vi/OCcMmftCKFs/0.jpg)](https://www.youtube.com/watch?v=OCcMmftCKFs)
+
+
 - Setup
   - run with docker using GPU
     - docker compose -f foodguardian-compose.yml up -d
@@ -32,8 +36,6 @@ Phase 2 Involves processing CCTV videos over large period of tume. To build a ti
     - Despite ever-increasing efforts, more than 11 million tons of food still end up in the trash every year in Germany alone because it is not sold in time before the expiration date and can therefore no longer be donated.
     - What technological solutions can be developed to reduce food waste and promote sustainability in retail? Consider using state-of-the-art industrial cameras, AI algorithms for image recognition and innovative systems for identifying and managing food that needs to be consumed urgently.
     - Challenge Partner: SICK AG
-
-
 
 
 - Phase 2
@@ -58,14 +60,11 @@ Phase 2 Involves processing CCTV videos over large period of tume. To build a ti
   4. Find state of Vegetable/fruits - Raw/Ripe/Spoilt
 
 
-References 
-
-- https://hack-now-2024.devpost.com/
-- https://de.nttdata-solutions.com/hack-now-2024
-
-- Harware
-  - https://github.com/BasedHardware
-  - https://github.com/MULTI-ON
-  - https://www.wur.nl/en/research-results/research-institutes/plant-research/greenhouse-horticulture/show-greenhouse/autonomous-greenhouse-challenge-4th-edition.htm
--
-https://hackathon.sick.com/
+- References 
+  - https://hack-now-2024.devpost.com/
+  - https://de.nttdata-solutions.com/hack-now-2024
+  - Hardware
+    - https://github.com/BasedHardware
+    - https://github.com/MULTI-ON
+    - https://www.wur.nl/en/research-results/research-institutes/plant-research/greenhouse-horticulture/show-greenhouse/autonomous-greenhouse-challenge-4th-edition.htm
+    - https://hackathon.sick.com/
