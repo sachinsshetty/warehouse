@@ -1,0 +1,4 @@
+gradio
+moondream
+torch
+Pillow

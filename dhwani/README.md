@@ -3,6 +3,7 @@ Dhwani - Medical Agent
 Communicate in local language for field events.  Real time translator with Medical Agent to transcribe symptoms to Care provider. 
 
 
+
 ## Inspiration
 
 During medical emergencies in natural disaster regions. Doctors/Volunteers arrive from different regions.
@@ -23,8 +24,11 @@ Reduce errors and faulty diagnosis
 ## What's next for Dhwani
 
 
+docker run -it -p 7860:7860 --platform=linux/amd64 \
+	registry.hf.space/gaganyatri-warehouse:latest 
 
 - Reference
   - Medhacks - https://devpost.com/software/dhwani-i69cf2
   - Boost 2 - https://devpost.com/software/bhoomi-idf0ps
   - FutureFest 2024 - https://devpost.com/software/bhoomi-9vgc0w
+  - https://huggingface.co/docs/hub/spaces-run-with-docker

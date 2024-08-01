@@ -2,6 +2,7 @@
 
 Phase 1 - Food Guardian AI
 
+[HF-Demo](https://huggingface.co/spaces/gaganyatri/warehouse)
 
 Using AI for Vision we can detect if fruits/vegetables are rotten. The system can take queries to return total loss, total damaged from day/week/month and notify user on which boxes have to be replaced.
 
